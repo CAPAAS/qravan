@@ -1,0 +1,10 @@
+postgres_source:
+  type: db
+  version: 1.0
+  adapter: postgres
+  user: smevql
+  password: smevql
+  host: localhost
+  port: 5432
+  database: smevql
+  max_connections: 10

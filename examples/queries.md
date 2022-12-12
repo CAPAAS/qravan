@@ -1,0 +1,46 @@
+{
+"query":{
+"driverlicense":{
+"conditions":{
+"DriverLicenseSerNum":"abc",
+"norm_DriverLicenseSerNum":"3"
+},
+"attributes":[
+"DriverLastname",
+"DriverFirstname",
+"DriverMiddlename"//,
+// "Driverlicenseid"
+],
+"APN":{
+"conditions":{
+
+            },
+            "attributes":[
+               "PersonLastName",
+               "PersonFirstName"
+            ]
+         },
+         "source": "prostore"
+      }
+},
+"credentials":{
+"system":{
+"mnemonic":"<guid>",
+"instance_id":"<guid>",
+"user_id":"<guid>"
+},
+"request":{
+"id":"<guid>",
+"sub_id":"<guid>",
+"name":"request_name",
+"purpose_id":"<guid>",
+"audit":false,
+"audit_id":"<guid>",
+"audit_token":"<token>"
+},
+"signature":{
+"digest":"",
+"signature":""
+}
+}
+}

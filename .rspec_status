@@ -1,0 +1,4 @@
+example_id                  | status | run_time        |
+--------------------------- | ------ | --------------- |
+./spec/qravan_spec.rb[1:1] | passed | 0.00082 seconds |
+./spec/qravan_spec.rb[1:2] | passed | 0.00037 seconds |

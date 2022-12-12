@@ -1,0 +1,9 @@
+default_source: &default_source
+  type: db
+  adapter: postgres
+  user: smevql
+  password: smevql
+  host: localhost
+  port: 5432
+  database: smevql
+  max_connections: 150

@@ -1,0 +1,12 @@
+prostore_source:
+  type: rest
+  version: 1.0
+  adapter: prostore
+  host: localhost
+  port: 9090
+  path: api/v1/datamarts/query?format=json
+  template: '{ "query": "%{request}" }'
+  payload-path: result
+  headers:
+    - accept: application/json
+    - content-type: application/json

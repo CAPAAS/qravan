@@ -1,0 +1,122 @@
+resources:
+  # Водитель ---------------------
+  - driver: *base_model
+    name: Водитель
+    fields:
+      <<: *default_fields
+      Lastname: *ds
+      Firstname: *ds
+      Middlename: *ds
+      BirthDate: *ds
+      BirthRegionId: *ds
+      BirthRegion: *ds
+      BirthPlace: *ds
+    connections:
+      has_many:
+        - driver_license:
+            primary_key: [ LastName, FirstName, MiddleName, BirthDay ]
+            foreign_key: [ LastName, FirstName, MiddleName, BirthDay ]
+        - reason_document:
+            primary_key: [ LastName, FirstName, MiddleName, BirthDay ]
+            foreign_key: [ LastName, FirstName, MiddleName, BirthDay ]
+        - restriction:
+            primary_key: [ LastName, FirstName, MiddleName, BirthDay ]
+            foreign_key: [ LastName, FirstName, MiddleName, BirthDay ]
+    extract:
+      source: *default_source
+        table: DriverLicense
+  # Водительское удостоверение ----------------------
+  - driver_license: *base_model
+    name: Водительское удостоверение
+    fields:
+      <<: *default_fields
+      LastName: *ds
+      FirstName: *ds
+      MiddleName: *ds
+      BirthDay: *ds
+      TypeId: *dn
+      Type: *ds
+      SerNum: *ds
+      LicenseSerNum: *ds
+      IssueDate: *ds
+      DueDate: *ds
+      Issuer: *ds
+      IssuerRegion: *ds
+      Categories: *ds
+      Experience: *ds
+      SpecMark: *ds
+      Photo: *ds
+      Status: *ds
+      OperationCode: *ds
+      OperationName: *ds
+      Id: *dn
+      IssuerCode: *ds
+      Region: *ds
+      CategoriesFull: *ds
+      DeprivationStatus: *ds
+      Qr: *ds
+    connections:
+      belongs_to:
+        - driver:
+            primary_key: [ LastName, FirstName, MiddleName, BirthDay ]
+            foreign_key: [ LastName, FirstName, MiddleName, BirthDay ]
+        - reason_document:
+            primary_key: SerNum
+            foreign_key: SerNum
+    extract:
+      source: *default_source
+        table: DriverLicense
+  # Документ-основание ----------------------
+  - reason_document: *base_model
+    name: Документ-основание
+    fields:
+      DocTypeId: *ds
+      DocType: *ds
+      SerNum: *ds
+      Issuer: *ds
+      IssueDate: *ds
+      DueDate: *ds
+    extract:
+      source: *default_source
+        table: DriverLicense
+  # Документ удостоверяющий личность ----------------------
+  - identity_document: *base_model
+    name: Документ удостоверяющий личность
+    fields:
+      TypeId: *ds
+      Type: *ds
+      SerNum: *ds
+      IssueDate: *ds
+    extract:
+      source: *default_source
+        table: DriverLicense
+
+  #  Ограничение
+  - restriction: *base_model
+  fields:
+    LastName: *ds
+    FirstName: *ds
+    MiddleName: *ds
+    LastNameNorm: *ds
+    FirstNameNorm: *ds
+    MiddleNameNorm: *ds
+    BirthDate: *ds
+    BirthPlace: *ds
+    DecreeDate: *ds
+    DecreeDeprivation: *ds
+    DecreeLawOrgan: *ds
+    DecreeInspector: *ds
+    DecreeLawDate: *ds
+    UnicNumber: *ds
+    Department: *ds
+    LastStageCode: *ds
+    LastStageName: *ds
+    LastStageDate: *ds
+  connections:
+    belongs_to:
+      - driver:
+          primary_key: [ LastName, FirstName, MiddleName, BirthDay ]
+          foreign_key: [ LastName, FirstName, MiddleName, BirthDay ]
+  extract:
+    source: *default_source
+      table: apn
