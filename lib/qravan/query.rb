@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require_relative "query/request"
 require_relative "query/response"
-require_relative "model/resource"
+require_relative "resource/resource"
 require_relative "source/db"
 require_relative "source/rest"
 
