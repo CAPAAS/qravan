@@ -1,3 +1,35 @@
+default_string: &ds
+  name: Строка
+  type:
+    - string
+    - STRING
+  length: 0
+  nullable: NULL
+  key: NONE
+  source: NONE
+
+default_number: &dn
+  name: Число
+  type:
+    - integer
+    - INTEGER
+  length: 0
+  nullable: NULL
+  key: NONE
+  source: NONE
+
+primary_key: &pk
+  name: Ключ
+  type:
+    - string
+    - STRING
+  length: 0
+  nullable: NULL
+  key: PRIMAY
+  source: NONE
+
+base_model: &base_model
+default_fields: &default_fields
 resources:
   # Водитель ---------------------
   - driver: *base_model

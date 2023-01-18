@@ -3,11 +3,11 @@
 # This file is used by Rack-based servers to start the application.
 # use Rack::Deflater
 
-require 'bundler/setup'
-require 'qravan'
+require "bundler/setup"
+require "qravan"
 
 Console.logger.info Qravan::BANNER
-Qravan::SOURCES = Qravan::Cargo.new
+Qravan::CARGO = Qravan::Cargo.new
 
 qravan = Rack::Builder.new do
 
@@ -16,12 +16,12 @@ qravan = Rack::Builder.new do
 
   map "/data" do
     use Rack::Lint
-    run Qravan::Query.freeze.new(Qravan::SOURCES)
+    run Qravan::Query.freeze.new(Qravan::CARGO)
   end
 
   map "/model" do
     use Rack::Lint
-    run Qravan::Model.new
+    run Qravan::Model.freeze.new(Qravan::CARGO)
   end
 
   map "/spec" do
@@ -31,7 +31,7 @@ qravan = Rack::Builder.new do
 
   map "/sources" do
     use Rack::Lint
-    run Qravan::Source.freeze.new
+    run Qravan::Source.freeze.new(Qravan::CARGO)
   end
 
   map "/ping" do

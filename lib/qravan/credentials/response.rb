@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "securerandom"
+
 module Qravan
   module Credentials
     # Response credentials
@@ -20,19 +22,19 @@ module Qravan
       end
 
       def id
-        @credentials["id"]
+        SecureRandom.uuid
       end
 
       def sub_id
-        @credentials["sub_id"]
+        SecureRandom.uuid
       end
 
       def started_at
-        @credentials["started_at"]
+        Time.now
       end
 
       def finished_at
-        @credentials["finished_at"]
+        Time.now
       end
     end
   end

@@ -2,11 +2,13 @@
 module Qravan
   # Resource processing class
   class Resource
-    attr_accessor :sources
+    attr_accessor :connections, :cargo
 
-    def initialize(name, data, sources = {})
+    def initialize(name, data, cargo = {})
       @resource = name
       @resource_data = data
+      @cargo ||= cargo
+      @connections = cargo.connections
     end
 
     def validate
@@ -14,8 +16,8 @@ module Qravan
     end
 
     def extract
-      @resource = "smevql1.driverlicenseql3" if @resource_data["source"] == 'prostore'
-      Qravan::Source.new.extract(@resource_data["source"], sql)
+      source_name = "#{cargo.models[@resource]["extract"]["source"]["name"]}_source"
+      @connections[source_name.to_s].extract(sql)
     end
 
     def sql
@@ -23,7 +25,7 @@ module Qravan
         :select,
         @resource_data["attributes"].join(","),
         :from,
-        @resource,
+        cargo.models[@resource]["extract"]["source"]["table"],
         :where,
         @resource_data["conditions"].map { |k, v| "#{k}='#{v}'" }
                                     .join(" and ")

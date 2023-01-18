@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
 module Qravan
-  # Sources for data extractions class
+  # Models for data extractions class
   class Model
+    attr_accessor :models
+
+    def initialize(cargo = {})
+      @models ||= cargo.models
+    end
 
     def call(env)
-      body = [Qravan::Model.list]
+      body = [models.to_json]
       status  = 200
       headers = { "content-type" => "application/json" }
 
       [status, headers, body]
-    end
-
-    class << self
-      def list
-        {}.to_json
-      end
     end
   end
 end

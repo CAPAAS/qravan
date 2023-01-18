@@ -9,14 +9,15 @@ module Qravan
 
   # Sources for data extractions class
   class Query
+    attr_accessor :cargo
 
-    def initialize(sources)
-      Qravan::EXTRACTOR ||= sources
+    def initialize(cargo)
+      @cargo ||= cargo
     end
 
     def call(env)
       query = Rack::Request.new(env)
-      request = Qravan::Request.new(JSON.parse(query.body.read))
+      request = Qravan::Request.new(JSON.parse(query.body.read), cargo)
       response = Qravan::Response.new(request)
 
       body = [response.answer]

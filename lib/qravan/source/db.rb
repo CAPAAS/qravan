@@ -6,7 +6,7 @@ require "logger"
 module Qravan
   # Database class
   class Db
-    attr_accessor :connection
+    attr_accessor :result, :connection
 
     def initialize(source)
       @connection = Sequel.connect(adapter: source["adapter"],
@@ -22,11 +22,14 @@ module Qravan
 
     def extract(sql)
       Console.logger.info "DB EXTRACT: #{sql}"
-      result = []
+      @result = []
+      time = Time.now
       @connection[sql].each do |row|
-        result << row
+        @result << row
       end
-      result
+      total = Time.now - time
+      @result << { time: "DB Duration: #{Time.now - time}s" }
+      @result
     end
   end
 end

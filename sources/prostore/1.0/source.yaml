@@ -2,6 +2,7 @@ prostore_source:
   type: rest
   version: 1.0
   adapter: prostore
+  protocol: http
   host: localhost
   port: 9090
   path: api/v1/datamarts/query?format=json

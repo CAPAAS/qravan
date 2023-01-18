@@ -6,7 +6,7 @@ require "logger"
 module Qravan
   # Database class
   class Rest
-    attr_accessor :result
+    attr_accessor :result, :connection
 
     def initialize(source)
       @connection = source
@@ -17,27 +17,19 @@ module Qravan
       internet = Async::HTTP::Internet.new
       barrier = Async::Barrier.new
       time = Time.now
-      requests = 0
       @result = []
-      url = "http://#{@connection["host"]}:#{@connection["port"]}/#{@connection["path"]}"
-      body = [@connection["template"] % { request: sql }]
-      Console.logger.info body
+      url = "#{@connection["protocol"]}://#{@connection["host"]}:#{@connection["port"]}/#{@connection["path"]}"
       headers = [%w[accept application/json], %w[content-type application/json]]
+      body = [@connection["template"] % { request: sql }]
       barrier.async do
-        Console.logger.info "POST: #{url}"
-        begin
-          response = internet.post(url, headers, body)
-          body = JSON.parse(response.read)
-          @result << body[@connection["payload-path"]]
-          requests += 1
-        ensure
-          response.finish
-        end
-        Console.logger.info "DONE: #{url}"
+        response = internet.post(url, headers, body)
+        response_body = JSON.parse(response.read)
+        @result << response_body[@connection["payload-path"]]
+      ensure
+        response.finish
       end
       barrier.wait
-      total = Time.now - time
-      @result << { time: "Duration: #{Time.now - time}s for #{requests} (RPS: #{(requests / total).to_i} r/s)" }
+      @result << { time: "REST Duration: #{Time.now - time}s " }
       @result
     end
   end
