@@ -12,8 +12,6 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://qravan.ru"
   spec.required_ruby_version = ">= 3.0.2"
 
-  spec.metadata["allowed_push_host"] = "https://qravan.ru"
-
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/capaas/qravan"
   spec.metadata["changelog_uri"] = "https://github.com/capaas/qravan/CHANGELOG.md"
