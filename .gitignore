@@ -56,4 +56,6 @@ build-iPhoneSimulator/
 # .rubocop-https?--*
 .idea
 .idea/*
+logs/*
 logs/db.log
+
