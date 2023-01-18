@@ -80,7 +80,7 @@ qravan
 ```json
 {
   "query":{
-    "driverlicense":{
+    "driver":{
       "conditions":{
         "DriverLicenseSerNum":"abc",
         "norm_DriverLicenseSerNum":"5"
@@ -90,10 +90,9 @@ qravan
         "DriverFirstname",
         "DriverMiddlename",
         "Driverlicenseid"
-        ],
-      "source": "prostore"
+        ]
     },
-    "driverlicense_new":{
+    "driver_license":{
       "conditions":{
         "DriverLicenseSerNum":"abc",
         "norm_DriverLicenseSerNum":"3"
@@ -103,8 +102,7 @@ qravan
         "DriverFirstname",
         "DriverMiddlename",
         "Driverlicenseid"
-        ],
-      "source": "postgres"
+        ]
     }
   },
   "credentials":{
@@ -135,37 +133,40 @@ qravan
 {
   "response": [
     {
-      "driverlicense": [
+      "driver": [
         [
           {
-            "driverlastname": "Петров",
-            "driverfirstname": "Иван",
-            "drivermiddlename": "Иванович",
-            "driverlicenseid": 1111
+            "driverlastname": "Сидоров",
+            "driverfirstname": "Олег",
+            "drivermiddlename": "Львович",
+            "driverlicenseid": 2222
           }
         ],
         {
-          "time": "Duration: 0.052415s for 1 (RPS: 19 r/s)"
+          "time": "REST Duration: 0.053709s "
         }
       ]
     },
     {
-      "driverlicense_new": [
+      "driver_license": [
         {
-          "driverlastname": "Евгеничук",
-          "driverfirstname": "Евгений",
-          "drivermiddlename": "Олегович",
-          "driverlicenseid": 333
+          "driverlastname": "Петречук",
+          "driverfirstname": "Петр",
+          "drivermiddlename": "Петрович",
+          "driverlicenseid": 2
+        },
+        {
+          "time": "DB Duration: 0.010184s"
         }
       ]
     }
   ],
   "credentials": {
     "response": {
-      "id": null,
-      "sub_id": null,
-      "started_at": null,
-      "finished_at": null
+      "id": "c11ba197-ae96-4a6a-bc11-a3464d54496c",
+      "sub_id": "50bcef8c-ef6e-4c6e-a893-4b42641919be",
+      "started_at": "2023-01-19 00:34:39 +0300",
+      "finished_at": "2023-01-19 00:34:39 +0300"
     },
     "system": {
       "mnemonic": "117bed7f-1c07-4079-a446-1161588db4e5",
