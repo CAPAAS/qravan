@@ -26,10 +26,20 @@ module Qravan
         @resource_data["attributes"].join(","),
         :from,
         cargo.models[@resource]["extract"]["source"]["table"],
-        :where,
-        @resource_data["conditions"].map { |k, v| "#{k}='#{v}'" }
-                                    .join(" and ")
-      ].join(" ")
+        where
+      ].flatten.join(" ")
+    end
+
+    def where
+      if @resource_data["conditions"]
+        [
+          :where,
+          @resource_data["conditions"].map { |k, v| "#{k}='#{v}'" }
+                                      .join(" and ")
+        ]
+      else
+        [""]
+      end
     end
   end
 end
