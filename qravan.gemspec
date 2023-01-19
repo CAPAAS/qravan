@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Qravan simple API server for data requests."
   spec.homepage      = "https://qravan.ru"
   spec.required_ruby_version = ">= 3.0.2"
+  spec.licenses = ["Nonstandard"]
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/capaas/qravan"
