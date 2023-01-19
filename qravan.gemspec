@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.extensions    = ["ext/qravan/extconf.rb"]
 
   # Uncomment to register a new dependency of your gem
-  spec.add_dependency "rack", "~> 3.0.2"
+  spec.add_dependency "rack", "~> 3.0.4.1"
   spec.add_dependency "rack-unreloader", ">= 1.8"
 
   spec.add_dependency "async", "~> 1.30.1"
