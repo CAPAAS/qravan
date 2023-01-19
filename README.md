@@ -191,5 +191,6 @@ qravan
 ```
 
 ## Лицензирование
-
 Qravan распространяется под открытой лицензией [CAPAAL](LICENSE).
+
+Copyright (c) 2022 Panasenkov Alexander (apanasenkov@capaa.ru)
