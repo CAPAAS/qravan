@@ -1,0 +1,151 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.0
+-- Dumped by pg_dump version 13.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+DROP DATABASE IF EXISTS smevql;
+--
+-- Name: smevql; Type: DATABASE; Schema: -; Owner: smevql
+--
+
+CREATE DATABASE smevql WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.UTF-8';
+
+
+ALTER DATABASE smevql OWNER TO smevql;
+
+\connect smevql
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: driverlicenseql3; Type: TABLE; Schema: smevql1; Owner: smevql
+--
+
+CREATE TABLE smevql1.driverlicenseql3 (
+    driverlicensetypeid bigint,
+    driverlicensetype character varying,
+    driverlicensesernum character varying,
+    norm_driverlicensesernum character varying,
+    driverlicenseissuedate date,
+    driverlicenseduedate date,
+    driverlicenseissuer character varying,
+    driverlicenseissuerregion character varying,
+    driverlicensecategories character varying,
+    driverlicenseexperience character varying,
+    driverlicensespecmark character varying,
+    driverlicensephoto character varying,
+    driverdoctypeid character varying,
+    driverdoctype character varying,
+    driverdocsernum character varying,
+    driverdocissuedate date,
+    driverlastname character varying,
+    driverfirstname character varying,
+    drivermiddlename character varying,
+    driverbirthdate date,
+    driverbirthregionid character varying,
+    driverbirthregion character varying,
+    driverbirthplace character varying,
+    driverbasedoctypeid bigint,
+    driverbasedoctype character varying,
+    driverbasesernum character varying,
+    driverbaseissuer character varying,
+    driverbaseissuedate date,
+    driverbaseduedate date,
+    driverlicensestatus bigint,
+    driverlicenseoperationcode bigint,
+    driverlicenseoperationname character varying,
+    driverlicenseid bigint NOT NULL,
+    driverlicenseissuercode character varying,
+    driveraddressregion character varying,
+    driverlicensecategoriesfull character varying,
+    driverlicenseqr character varying
+);
+
+
+ALTER TABLE smevql1.driverlicenseql3 OWNER TO smevql;
+
+--
+-- Data for Name: driverlicenseql3; Type: TABLE DATA; Schema: smevql1; Owner: smevql
+--
+
+COPY smevql1.driverlicenseql3 (driverlicensetypeid, driverlicensetype, driverlicensesernum, norm_driverlicensesernum, driverlicenseissuedate, driverlicenseduedate, driverlicenseissuer, driverlicenseissuerregion, driverlicensecategories, driverlicenseexperience, driverlicensespecmark, driverlicensephoto, driverdoctypeid, driverdoctype, driverdocsernum, driverdocissuedate, driverlastname, driverfirstname, drivermiddlename, driverbirthdate, driverbirthregionid, driverbirthregion, driverbirthplace, driverbasedoctypeid, driverbasedoctype, driverbasesernum, driverbaseissuer, driverbaseissuedate, driverbaseduedate, driverlicensestatus, driverlicenseoperationcode, driverlicenseoperationname, driverlicenseid, driverlicenseissuercode, driveraddressregion, driverlicensecategoriesfull, driverlicenseqr) FROM stdin;
+5	E	41604\r	37384	\N	\N	40177	41328	39929	41273	45818	33612	46509	45720	49725	\N	Иванов	Петр	Петрович	\N	9830	9933	9029	9067	9881	9297	9811	\N	\N	9591	9197	9616	6	9844	9765	9031	9199\r
+4	E	43014\r	49968	\N	\N	39263	33510	46216	32170	39353	47572	40261	41034	42802	\N	Смирнов	Иван	Иванович	\N	9044	9813	9881	9328	9221	9939	9720	\N	\N	9183	9265	9150	22	9784	9192	9622	9284\r
+5	E	33804\r	30343	\N	\N	45400	43064	41106	42632	48333	32216	48814	40013	39843	\N	Козлов	Кирилл	Александрович	\N	9193	9223	9215	9322	9802	9549	9613	\N	\N	9742	9810	9617	12	9953	9455	9538	9581\r
+2	D	32563\r	44522	\N	\N	37435	31271	47627	36037	40230	35079	43076	46020	45352	\N	Морозов	Дмитрий	Александрович	\N	9908	9666	9487	9578	9745	9967	9553	\N	\N	9231	9216	9758	13	9552	9813	9072	9752\r
+4	E	34651\r	47132	\N	\N	34843	45802	40168	48379	32442	48267	30145	37842	39505	\N	Васильев	Сергей	Викторович	\N	9612	9767	9911	9577	9348	9095	9044	\N	\N	9652	9973	9091	5	9133	9270	9298	9655\r
+2	D	48629\r	45781	\N	\N	46798	39543	33819	42643	45076	38441	48697	41322	48927	\N	Петров	Александр	Александрович	\N	9547	9759	9495	9474	9123	9187	9988	\N	\N	9096	9799	9231	25	9597	9857	9394	9957\r
+5	D	37032\r	48544	\N	\N	43155	39219	40338	45451	46554	46035	49409	30710	40314	\N	Попов	Владимир	Владимирович	\N	9279	9431	9086	9956	9076	9624	9299	\N	\N	9532	9245	9122	38	9654	9638	9276	9006\r
+3	E	38578\r	39339	\N	\N	42974	44047	36268	38479	37347	37680	33099	40084	46868	\N	Соколов	Александр	Викторович	\N	9544	9119	9148	9108	9188	9097	9994	\N	\N	9684	9562	9976	27	9396	9699	9093	9520\r
+4	D	49133\r	40423	\N	\N	45874	49247	31668	32622	32364	49951	49727	44777	36434	\N	Соловьёв	Леонид	Иванович	\N	9563	9684	9560	9316	9942	9434	9095	\N	\N	9653	9693	9471	36	9787	9739	9546	9538\r
+2	D	41414\r	30305	\N	\N	39796	35826	38849	46806	30651	34581	45212	30432	33118	\N	Кузнецов	Валерий	Евгеньевич	\N	9960	9604	9043	9854	9470	9807	9729	\N	\N	9348	9293	9180	32	9881	9133	9429	9345\r
+5	M	32759	37557	\N	\N	35267	38135	33907	31819	32383	32062	40067	45956	45417	\N	Новиков	Олег	Александрович	\N	9299	9592	9424	9433	9812	9889	9557	\N	\N	9180	9657	9760	20	9715	9423	9904	9936\r
+4	D	49565\r	48550	\N	\N	47215	30616	32399	38732	31737	31835	45174	41982	36091	\N	Лебедев	Ильнар	Мансурович	\N	9740	9324	9797	9732	9795	9308	9934	\N	\N	9941	9462	9570	29	9419	9697	9821	9851\r
+2	M	46626\r	46855	\N	\N	33728	33881	35389	31875	47865	44560	33564	44218	32614	\N	Волков	Юлия	Олеговна	\N	9312	9443	9550	9657	9679	9761	9150	\N	\N	9118	9303	9932	31	9082	9916	9715	9482\r
+4	D	36464\r	41220	\N	\N	31438	45520	45062	39925	47256	38069	40824	34952	44989	\N	Воробьёв	Василий	Вячеславович	\N	9065	9408	9962	9110	9314	9600	9353	\N	\N	9593	9074	9279	1	9767	9750	9261	9834\r
+5	D	45367\r	31492	\N	\N	38366	40906	44907	49044	35945	41825	30210	45992	38756	\N	Богданов	Денис	Андреевич	\N	9296	9397	9621	9469	9453	9414	9339	\N	\N	9855	9917	9421	26	9976	9154	9502	9866\r
+2	M	30604\r	40945	\N	\N	32443	34934	44106	39005	30392	38738	44331	33681	37819	\N	Зайцев	Елизавета	Григорьевна	\N	9541	9442	9288	9677	9080	9605	9447	\N	\N	9762	9954	9486	28	9688	9778	9632	9674\r
+2	D	39019\r	31036	\N	\N	47898	37020	43695	41831	36560	40674	39528	31263	31560	\N	Семёнов	Тимур	Маратович	\N	9863	9000	9773	9011	9245	9351	9772	\N	\N	9848	9957	9481	30	9502	9052	9570	9251\r
+5	M	37616\r	49707	\N	\N	43504	49493	44018	48965	40481	45554	35884	45193	40204	\N	Тарасов	Илья	Михайлович	\N	9118	9426	9685	9151	9268	9311	9243	\N	\N	9074	9151	9367	17	9469	9424	9402	9991\r
+2	D	36212\r	32756	\N	\N	49754	34948	47887	40130	45544	34825	43672	40673	30724	\N	Павлов	Вячеслав	Александрович	\N	9740	9126	9837	9523	9603	9652	9524	\N	\N	9771	9793	9738	18	9442	9691	9074	9233\r
+4	E	42102\r	40116	\N	\N	46690	39885	32469	43751	34759	45648	41614	38868	43866	\N	Фёдоров	Михаил	Александрович	\N	9635	9214	9479	9103	9763	9118	9504	\N	\N	9314	9212	9631	8	9122	9088	9145	9874\r
+5	E	42823\r	49667	\N	\N	34703	47154	41051	47236	48240	40666	47886	36700	44919	\N	Голубев	Камиль	Гадиятулаевич	\N	9007	9688	9084	9547	9539	9876	9584	\N	\N	9976	9143	9302	10	9707	9029	9887	9245\r
+2	D	34570\r	35336	\N	\N	44261	48726	32627	40788	30656	35460	40879	34530	43350	\N	Белов	Евгений	Витальевич	\N	9484	9196	9981	9285	9678	9308	9804	\N	\N	9045	9373	9632	14	9924	9503	9097	9527\r
+3	M	31199\r	30578	\N	\N	30541	40497	36928	34481	38586	30600	46313	49630	31381	\N	Михайлов	Александр	Георгиевич	\N	9844	9049	9330	9052	9770	9640	9672	\N	\N	9898	9667	9295	19	9321	9926	9492	9437\r
+4	D	48463\r	33698	\N	\N	36513	31836	41753	47511	34752	40571	38507	41635	32441	\N	Комаров	Евгений	Александрович	\N	9211	9334	9952	9756	9881	9934	9465	\N	\N	9026	9237	9399	23	9911	9102	9403	9919\r
+4	E	45223\r	30893	\N	\N	35264	39076	46607	31430	32989	30502	44350	34403	41518	\N	Беляев	Алексей	Николаевич	\N	9347	9220	9921	9908	9847	9461	9572	\N	\N	9975	9097	9453	11	9315	9222	9249	9350\r
+2	D	43707\r	49502	\N	\N	43233	35838	39282	44456	42490	34504	36989	42232	43540	\N	Виноградов	Павел	Викторович	\N	9940	9293	9415	9250	9145	9099	9957	\N	\N	9757	9062	9103	2	9745	9683	9635	9554\r
+4	D	49656\r	46817	\N	\N	44135	33942	37246	49326	36748	46344	30450	30903	48074	\N	Куликов	Георгий	Евгеньевич	\N	9237	9298	9567	9534	9069	9243	9602	\N	\N	9440	9945	9625	16	9409	9332	9894	9221\r
+4	M	42809\r	49686	\N	\N	45030	48543	42333	40415	44934	40121	48777	35466	43760	\N	Алексеев	Дмитрий	Владимирович	\N	9494	9592	9175	9265	9334	9053	9838	\N	\N	9155	9564	9603	3	9304	9597	9820	9556\r
+2	E	38491\r	49526	\N	\N	34753	44902	33918	39376	43744	31151	37193	47518	43957	\N	Баранов	Роман	Сергеевич	\N	9864	9278	9420	9970	9717	9535	9167	\N	\N	9294	9003	9849	34	9798	9536	9242	9168\r
+2	D	47039\r	34627	\N	\N	36823	40711	34258	37334	36470	30436	40908	42419	36103	\N	Кудрявцев	Светлана	Валерьевна	\N	9832	9083	9159	9687	9374	9076	9736	\N	\N	9300	9783	9494	33	9376	9006	9880	9758\r
+2	D	35338\r	46756	\N	\N	39614	33621	32434	32457	37554	41064	46467	47084	31542	\N	Макаров	Всеволод	Дмитриевич	\N	9988	9426	9749	9478	9615	9038	9793	\N	\N	9422	9001	9640	15	9951	9502	9882	9315\r
+2	E	47895\r	38968	\N	\N	38545	49422	49170	46406	40350	40978	45942	35251	44989	\N	Титов	Николай	Викторович	\N	9892	9253	9959	9421	9757	9800	9342	\N	\N	9600	9056	9940	9	9436	9500	9296	9263\r
+4	D	43082\r	40600	\N	\N	41989	43303	48229	38314	45012	32411	31609	35249	43515	\N	Гусев	Александр	Сергеевич	\N	9625	9045	9987	9843	9101	9083	9403	\N	\N	9768	9932	9360	35	9822	9758	9887	9475\r
+2	E	39246\r	38066	\N	\N	32203	44209	47451	49260	36593	39282	41299	46188	49000	\N	Ковалёв	Филипп	Арсенович	\N	9676	9358	9679	9281	9291	9636	9985	\N	\N	9812	9787	9111	39	9313	9360	9243	9923
+3	M	33755\r	44247	\N	\N	34063	44357	48029	37386	35262	34391	47193	34787	32237	\N	Киселёв	Евгений	Александрович	\N	9194	9650	9508	9942	9166	9157	9336	\N	\N	9178	9937	9438	4	9714	9413	9106	9585\r
+2	E	35077\r	49020	\N	\N	45275	33979	43352	49691	47660	42356	37954	37598	42647	\N	Кузьмин	Денис	Алексеевич	\N	9519	9621	9298	9571	9014	9002	9382	\N	\N	9345	9595	9339	21	9175	9139	9158	9319\r
+5	D	39253\r	45223	\N	\N	40100	37531	36153	43895	48651	40730	45967	40089	46655	\N	Ильин	Иван	Сергеевич	\N	9450	9832	9354	9589	9069	9993	9214	\N	\N	9703	9607	9980	24	9453	9251	9281	9306\r
+4	M	41409\r	37431	\N	\N	36135	38292	41915	35949	33008	47121	33838	31724	34843	\N	Орлов	Олег	Николаевич	\N	9426	9603	9372	9072	9389	9065	9731	\N	\N	9892	9958	9420	7	9476	9152	9768	9656\r
+3	D	41220\r	33479	\N	\N	35166	46645	48648	47556	46967	42661	30908	33909	31017	\N	Андреев	Мария	Анатольевна	\N	9489	9814	9097	9759	9087	9665	9173	\N	\N	9867	9167	9953	37	9017	9425	9946	9720\r
+\.
+
+
+--
+-- Name: driverlicenseql3 driverlicenseql_pkey; Type: CONSTRAINT; Schema: smevql1; Owner: smevql
+--
+
+ALTER TABLE ONLY smevql1.driverlicenseql3
+    ADD CONSTRAINT driverlicenseql_pkey PRIMARY KEY (driverlicenseid);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

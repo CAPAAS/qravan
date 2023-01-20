@@ -3,8 +3,11 @@ Qravan _[карав`ан]_ — сервер для быстрого создан
 
 ![](assets/images/qravan.png)
 ## Установка
+Установить как GEM (**предпочтительно**):
 
-Добавить строку ниже в свой Gemfile:
+    $ gem install qravan
+
+**Или** добавить строку ниже в свой Gemfile:
 
 ```ruby
 gem 'qravan'
@@ -14,23 +17,20 @@ gem 'qravan'
 
     $ bundle install
 
-Или установить просто как Gem (предпочтительно):
-
-    $ gem install qravan
 
 ## Запуск
 Запустить сервер Qravan:
 
     $ qravan
 
-Сервер станет доступен по адресу `http://localhost:3300/`. В базовую поставку включены демонстрационные источники и модели.
+Сервер станет доступен по адресу `http://localhost:3300/`. В базовую поставку включены демонстрационные источники `postgres`, `prostore` и модель `vehicles`.
 
 ## Методы сервера
 Сервер содержит следующие методы:
-1. GET /ping — проверить запусщенность сервера (ответ PONG!)
-2. GET /models — список загруженных моделей
-3. GET /sources — список загруженных источников
-4. POST /data — выполнить запрос
+1. GET http://localhost:3300/ping — проверить запусщенность сервера (ответ PONG!)
+2. GET http://localhost:3300/model — список загруженных моделей
+3. GET http://localhost:3300/sources — список загруженных источников
+4. POST http://localhost:3300/data — выполнить запрос
 
 
 ## Настройка моделей данных и ресурсов
@@ -76,33 +76,62 @@ qravan
 ```
 ## Пример использования
 
+### Демо-данные
+В составе Qravan описаны демо-модели и источники. Также в папке `examples` лежат дампы (`pg_dump`) Postgres, достаточные для проверок ниже. 
+
+### Запросы к демо-данным
 Запрос объединенных данных о владельце автомобиля из Prostore и Postgres:
 ```json
 {
   "query":{
     "driver":{
       "conditions":{
-        "DriverLicenseSerNum":"abc",
-        "norm_DriverLicenseSerNum":"5"
+        "driverlicensetype":"E",
+        "drivermiddlename":"Александрович"
       },
       "attributes":[
         "DriverLastname",
         "DriverFirstname",
         "DriverMiddlename",
-        "Driverlicenseid"
-        ]
+        "driverlicensetype"
+
+      ]
+    },
+    "super_driver":{
+      "conditions":{
+        "driverlicensetype":"D",
+        "driverfirstname": "Евгений"
+      },
+      "attributes":[
+        "DriverLastname",
+        "DriverFirstname",
+        "DriverMiddlename",
+        "driverlicensetype"
+
+      ]
     },
     "driver_license":{
       "conditions":{
-        "DriverLicenseSerNum":"abc",
-        "norm_DriverLicenseSerNum":"3"
+        "driverlicensetype":"C",
+        "driverlicensetypeid": 1
       },
       "attributes":[
         "DriverLastname",
         "DriverFirstname",
         "DriverMiddlename",
         "Driverlicenseid"
-        ]
+      ]
+    },
+    "identity_document":{
+      "conditions": {
+        "driverlicensetypeid": 4
+      },
+      "attributes":[
+        "driverlicenseissuer",
+        "DriverLicenseSerNum",
+        "driverlicensetype"
+
+      ]
     }
   },
   "credentials":{
@@ -136,37 +165,128 @@ qravan
       "driver": [
         [
           {
-            "driverlastname": "Сидоров",
-            "driverfirstname": "Олег",
-            "drivermiddlename": "Львович",
-            "driverlicenseid": 2222
+            "driverlastname": "Козлов",
+            "driverfirstname": "Кирилл",
+            "drivermiddlename": "Александрович",
+            "driverlicensetype": "E"
+          },
+          {
+            "driverlastname": "Фёдоров",
+            "driverfirstname": "Михаил",
+            "drivermiddlename": "Александрович",
+            "driverlicensetype": "E"
           }
         ],
         {
-          "time": "REST Duration: 0.053709s "
+          "time": "REST Duration: 0.21902s "
+        }
+      ]
+    },
+    {
+      "super_driver": [
+        [
+          {
+            "driverlastname": "Белов",
+            "driverfirstname": "Евгений",
+            "drivermiddlename": "Витальевич",
+            "driverlicensetype": "D"
+          },
+          {
+            "driverlastname": "Комаров",
+            "driverfirstname": "Евгений",
+            "drivermiddlename": "Александрович",
+            "driverlicensetype": "D"
+          }
+        ],
+        {
+          "time": "REST Duration: 0.022836s "
         }
       ]
     },
     {
       "driver_license": [
         {
-          "driverlastname": "Петречук",
-          "driverfirstname": "Петр",
-          "drivermiddlename": "Петрович",
-          "driverlicenseid": 2
+          "driverlastname": "Беляев",
+          "driverfirstname": "Алексей",
+          "drivermiddlename": "Николаевич",
+          "driverlicenseid": 32
         },
         {
-          "time": "DB Duration: 0.010184s"
+          "driverlastname": "Соловьёв",
+          "driverfirstname": "Леонид",
+          "drivermiddlename": "Иванович",
+          "driverlicenseid": 26
+        },
+        {
+          "driverlastname": "Михайлов",
+          "driverfirstname": "Александр",
+          "drivermiddlename": "Георгиевич",
+          "driverlicenseid": 34
+        },
+        {
+          "time": "DB Duration: 0.00319s"
+        }
+      ]
+    },
+    {
+      "identity_document": [
+        {
+          "driverlicenseissuer": "44261",
+          "driverlicensesernum": "32662",
+          "driverlicensetype": "B"
+        },
+        {
+          "driverlicenseissuer": "32203",
+          "driverlicensesernum": "39303",
+          "driverlicensetype": "A"
+        },
+        {
+          "driverlicenseissuer": "43233",
+          "driverlicensesernum": "30101",
+          "driverlicensetype": "A"
+        },
+        {
+          "driverlicenseissuer": "45275",
+          "driverlicensesernum": "42336",
+          "driverlicensetype": "B"
+        },
+        {
+          "driverlicenseissuer": "46690",
+          "driverlicensesernum": "31614",
+          "driverlicensetype": "A"
+        },
+        {
+          "driverlicenseissuer": "37435",
+          "driverlicensesernum": "47250",
+          "driverlicensetype": "B"
+        },
+        {
+          "driverlicenseissuer": "36823",
+          "driverlicensesernum": "45173",
+          "driverlicensetype": "C"
+        },
+        {
+          "driverlicenseissuer": "33728",
+          "driverlicensesernum": "43290",
+          "driverlicensetype": "C"
+        },
+        {
+          "driverlicenseissuer": "41989",
+          "driverlicensesernum": "47023",
+          "driverlicensetype": "C"
+        },
+        {
+          "time": "DB Duration: 0.001113s"
         }
       ]
     }
   ],
   "credentials": {
     "response": {
-      "id": "c11ba197-ae96-4a6a-bc11-a3464d54496c",
-      "sub_id": "50bcef8c-ef6e-4c6e-a893-4b42641919be",
-      "started_at": "2023-01-19 00:34:39 +0300",
-      "finished_at": "2023-01-19 00:34:39 +0300"
+      "id": "4201414d-fa86-4221-9d15-f91c10356daa",
+      "sub_id": "a59ea446-5dca-4705-bca5-53d6569e58a2",
+      "started_at": "2023-01-20 12:34:25 +0300",
+      "finished_at": "2023-01-20 12:34:25 +0300"
     },
     "system": {
       "mnemonic": "117bed7f-1c07-4079-a446-1161588db4e5",
