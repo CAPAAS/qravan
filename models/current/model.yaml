@@ -31,6 +31,35 @@ primary_key: &pk
 base_model: &base_model
 default_fields: &default_fields
 resources:
+  # супер Водитель ---------------------
+  - super_driver: *base_model
+    name: Водитель
+    fields:
+      <<: *default_fields
+      Lastname: *ds
+      Firstname: *ds
+      Middlename: *ds
+      BirthDate: *ds
+      BirthRegionId: *ds
+      BirthRegion: *ds
+      BirthPlace: *ds
+    connections:
+      has_many:
+        - driver_license:
+            primary_key: [ LastName, FirstName, MiddleName, BirthDay ]
+            foreign_key: [ LastName, FirstName, MiddleName, BirthDay ]
+        - reason_document:
+            primary_key: [ LastName, FirstName, MiddleName, BirthDay ]
+            foreign_key: [ LastName, FirstName, MiddleName, BirthDay ]
+        - restriction:
+            primary_key: [ LastName, FirstName, MiddleName, BirthDay ]
+            foreign_key: [ LastName, FirstName, MiddleName, BirthDay ]
+    extract:
+      source:
+        name: prostore
+        table: smevql1.driverlicenseql3
+  #        name: postgres
+  #        table: DriverLicense
   # Водитель ---------------------
   - driver: *base_model
     name: Водитель
@@ -58,6 +87,8 @@ resources:
       source:
         name: prostore
         table: smevql1.driverlicenseql3
+#        name: postgres
+#        table: DriverLicense
   # Водительское удостоверение ----------------------
   - driver_license: *base_model
     name: Водительское удостоверение
@@ -123,7 +154,7 @@ resources:
       IssueDate: *ds
     extract:
       source:
-        name: prostore
+        name: postgres
         table: DriverLicense
 
   #  Ограничение
