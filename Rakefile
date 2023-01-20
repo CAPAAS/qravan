@@ -20,7 +20,7 @@ end
 task default: %i[clobber compile spec clean install] # rubocop
 
 GEM_NAME = "qravan"
-GEM_VERSION = "0.1.0"
+GEM_VERSION = "0.1.1"
 
 task :build do
   system "gem build #{GEM_NAME}.gemspec"
